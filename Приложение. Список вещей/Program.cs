@@ -1,6 +1,10 @@
-﻿namespace Приложение._Список_вещей { 
+﻿using System.IO;
+
+namespace Приложение._Список_вещей { 
     class Program {
         static void Main(string[] args) {
+            FileInfo file = new FileInfo(@"C:\Users\З - 15\Documents\Бутаков Максим\list\listSave.txt");
+
             List<string> BaseList = new List<string>();
             void cout(string s) {
                 Console.WriteLine(s);
@@ -49,13 +53,10 @@
                             break;
                         }
                     case "8": {
-                            FileInfo file = new FileInfo(@"C:\Users\З - 15\Documents\Бутаков Максим\list\listSave.txt");
 
                             using (StreamWriter writer = new(@"C:\Users\З - 15\Documents\Бутаков Максим\list\listSave.txt", false)) {
-                                int i = 0;
-                                foreach (var item in BaseList) {
-                                    writer.WriteLine($"{i + 1})" + item);
-                                }
+                                for(int i = 0; i < BaseList.Count; i++) 
+                                     writer.WriteLine($"{i + 1})" + BaseList[i]);
                             }
                             break;
                         }
@@ -63,7 +64,7 @@
                             printBaseList();
                             cout("\n");
                             break;
-                        }
+                    }
                 }
             }
         }
