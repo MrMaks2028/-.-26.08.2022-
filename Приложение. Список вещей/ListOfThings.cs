@@ -6,11 +6,27 @@ using System.Threading.Tasks;
 
 namespace Приложение._Список_вещей {
     class ListOfThings {
-        public ListOfThings(string name, List<string> other) {
-            name = name;
+        public ListOfThings(string name) {
+            _name = name;
+            _list = new List<string>();
         }
 
-        public string name { get; set; }
-        public List<string> list { get; set; }
+        void addList(List<string> other, int pos)
+        {
+            _list.Add(other[pos]);
+        }
+
+        void Add(string s)
+        {
+            _list.Add(s);
+        }
+
+        void Remove(int pos)
+        {
+            _list.RemoveAt(pos);
+        }
+
+        public string _name { get; set; }
+        public List<string> _list { get; set; }
     }
 }
