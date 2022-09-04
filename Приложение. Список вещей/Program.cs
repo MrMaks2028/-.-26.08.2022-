@@ -4,14 +4,21 @@ using System.IO;
 namespace Приложение._Список_вещей { 
     class Program {
         static void Main(string[] args) {
+            List<ListOfLists> listOfLists = new List<ListOfLists>();
+            List<string> BaseList = new List<string>();
+
             FileInfo file1 = new FileInfo(@"D:\List\ListOfLists.txt");
+            using(StreamReader reader = new(@"D:\List\ListOfLists.txt"))
+            {
+                string line;
+                int i = 0;
+                while ((line = reader.ReadLine()) == "Основной Список")
+            }
             using (StreamWriter writer = new(@"D:\List\ListOfLists.txt", true))
             {
                 writer.WriteLine("Основной Список");
             }
 
-            List<ListOfThings> listOfThings = new List<ListOfThings>();
-            List<string> BaseList = new List<string>();
             void cout(string s) {
                 Console.WriteLine(s);
             }
@@ -24,17 +31,8 @@ namespace Приложение._Список_вещей {
                 cout("5 - очистить список");
                 cout("6 - вывести основной список");
                 cout("7 - вывести все списки");
-                cout("8 - экспортировать список(.txt)");
+                cout("8 - экспортировать список в .txt");
                 cout("9 - выйти из программы\n");
-            }
-
-
-            void printBaseList() {
-                int i = 0;
-                foreach (var item in BaseList) {
-                    cout($"{i + 1})" + item);
-                    i++;
-                }
             }
 
             string s = "";
@@ -49,7 +47,7 @@ namespace Приложение._Список_вещей {
                             {
                                 writer.WriteLine(list._name);
                             }
-                            listOfThings.Add(list);
+                            listOfLists[0].listOfLists.Add(list);
                             break;
                         }
                     case "2": {
@@ -110,6 +108,20 @@ namespace Приложение._Список_вещей {
                             //listOfThings[value]
                             break;
                         }
+                    case "7":
+                        {
+                            using (StreamReader reader = new(@"D:\List\ListOfLists.txt"))
+                            {
+                                string line;
+                                int i = 1;
+                                while ((line = reader.ReadLine()) != null)
+                                {
+                                    Console.WriteLine($"{i + 1}){line}");
+                                    i++;
+                                }
+                            }
+                            break;
+                        }
                     case "8": {
                             FileInfo file2 = new FileInfo(@"D:\List\ListSave.txt");
                             using (StreamWriter writer = new(@"D:\List\ListSave.txt", false)) {
@@ -123,6 +135,15 @@ namespace Приложение._Список_вещей {
                             cout("\n");
                             break;
                     }
+                }
+            }
+            void printBaseList()
+            {
+                int i = 0;
+                foreach (var item in BaseList)
+                {
+                    cout($"{i + 1})" + item);
+                    i++;
                 }
             }
         }

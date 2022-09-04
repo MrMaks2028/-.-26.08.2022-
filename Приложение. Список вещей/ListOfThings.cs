@@ -11,11 +11,6 @@ namespace Приложение._Список_вещей {
             _list = new List<string>();
         }
 
-        void addList(List<string> other, int pos)
-        {
-            _list.Add(other[pos]);
-        }
-
         void Add(string s)
         {
             _list.Add(s);
