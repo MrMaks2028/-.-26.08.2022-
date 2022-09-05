@@ -4,21 +4,10 @@ using System.IO;
 namespace Приложение._Список_вещей { 
     class Program {
         static void Main(string[] args) {
-            List<ListOfLists> listOfLists = new List<ListOfLists>();
-            List<string> BaseList = new List<string>();
 
-            FileInfo file1 = new FileInfo(@"D:\List\ListOfLists.txt");
-            using(StreamReader reader = new(@"D:\List\ListOfLists.txt"))
-            {
-                string line;
-                int i = 0;
-                while ((line = reader.ReadLine()) == "Основной Список")
-            }
-            using (StreamWriter writer = new(@"D:\List\ListOfLists.txt", true))
-            {
-                writer.WriteLine("Основной Список");
-            }
-
+            FileInfo file = new FileInfo(@"D:\List\BaseList.txt"); 
+            List<Things> BaseList = new List<Things>();
+           
             void cout(string s) {
                 Console.WriteLine(s);
             }
@@ -42,70 +31,16 @@ namespace Приложение._Список_вещей {
                 switch (s) {
                     case "1": {
                             cout("Введите название списка: ");
-                            ListOfThings list = new ListOfThings(Console.ReadLine());
-                            using (StreamWriter writer = new(@"D:\List\ListOfLists.txt", true))
-                            {
-                                writer.WriteLine(list._name);
-                            }
-                            listOfLists[0].listOfLists.Add(list);
+                          
                             break;
                         }
                     case "2": {
-                            cout($"Выберите список, который хотите дополнить: \n");
-                            using (StreamReader reader = new(@"D:\List\ListOfLists.txt"))
-                            {
-                                string line;
-                                int i = 0;
-                                while ((line = reader.ReadLine()) != null)
-                                {
-                                    Console.WriteLine($"{i+1}){line}");
-                                    i++;
-                                }
-                            }
-                            int value = int.Parse(Console.ReadLine());
-                            if (value == 1)
-                            {
-                                cout("Вводите элемент в список через Enter(если вы закончили добавление элементов, введите 0):");
-                                for (int i = 0; ; i++)
-                                {
-                                    string s2 = Console.ReadLine();
-                                    if (s2 == "0")
-                                        break;
-                                    BaseList.Add(s2);
-                                }
-                                cout("\n");
-                            }
-                            else
-                            {
-                                printBaseList();
-                                cout("\n\nВводите номер элемента из основного списка через Enter, чтобы" +
-                                    "добавить его в список(если вы закончили добавление элементов, введите 0):");
-                                for (int i = 0; ; i++)
-                                {
-                                    int value2 = int.Parse(Console.ReadLine());
-                                    if (value2 == 0)
-                                        break;
-                                    listOfThings[value]._list.Add(BaseList[value2-1]);
-                                }
-                                cout("\n");
-                            }
+                           
                             break;
                     }
                     case "4":
                         {
-                            cout($"Выберите список, который хотите удалить: \n");
-                            using (StreamReader reader = new(@"D:\List\ListOfLists.txt"))
-                            {
-                                string line;
-                                int i = 1;
-                                while ((line = reader.ReadLine()) != null)
-                                {
-                                    Console.WriteLine($"{i + 1}){line}");
-                                    i++;
-                                }
-                            }
-                            //int value = int.Parse(Console.ReadLine());
-                            //listOfThings[value]
+                            
                             break;
                         }
                     case "7":
